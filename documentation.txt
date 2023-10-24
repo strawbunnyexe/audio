@@ -1,0 +1,9 @@
+Audio Visualizer Documentation
+
+Audio Effect nodes added are the treble and bass nodes.
+
+The Sprite class is a rotating spiral visual that rotates as the audio plays. There are three of those spirals in total on the canvas.
+
+The app data has the title of the application, an array of tracks that includes their name and url, and an array of 3 sprites and some their data (x coordinate, y coordinate, and color).
+
+I would give myself a 5% as there are not many substantial changes from the AV HW. I altered the colors to make it a bit more pleasing to the eyes and rearranged how the bars are drawn, starting them from the center of the canvas.

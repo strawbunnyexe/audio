@@ -1,0 +1,53 @@
+body {
+    background: #603450;
+    color: #fafafa;
+    font-family: tahoma, verdana, serif;
+  }
+  main{
+    width: 70%;
+    margin: 1rem auto;
+    padding: 0.5em;
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: center;
+  }
+  canvas {
+    margin: 1em;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+    background: #fafafa;
+    border: 2px solid #3c408c;
+  }
+  
+  #controls{
+    margin: 1em;
+    padding: 1em;
+    border-radius: 1em;
+    border: 2px solid #3c408c;
+    background-color: #6c6d7d9b;
+  }
+  
+  #label-volume{
+    margin-left: 1rem;
+  }
+  
+  section{
+    margin-bottom: 1rem;
+  }
+  
+  #btn-play{
+    font-size: 1.2rem;
+    width: 6rem;
+  }
+  
+  button[data-playing="yes"]:after{
+    content: "Pause";
+  }
+  
+  button[data-playing="no"]:after{
+    content: "Play";
+  }
+  
+  #btn-fs{
+    font-size: 1.2rem;
+    width: 8rem;
+  }

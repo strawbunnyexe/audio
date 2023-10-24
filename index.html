@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Audio Visualizer</title>
+  <link href="./styles/default-styles.css" type="text/css" rel="stylesheet" />
+  <script src="./src/loader.js" type="module"></script>
+</head>
+<body>
+    <main>
+      <canvas width="960" height="540"></canvas>
+      <div id="controls">
+        <section>
+          <button id="btn-play" data-playing="no"></button>
+          <button id="btn-fs">Full Screen</button>
+		
+        <label>Track: 
+          <select id="select-track">
+          <!-- <option value="media/New Adventure Theme.mp3" selected>New Adventure Theme</option>
+          <option value="media/Peanuts Theme.mp3">Peanuts Theme</option>
+          <option value="media/The Picard Song.mp3">The Picard Song</option> -->
+          </select>
+        </label>
+        </section>
+		
+        <section>
+          Volume: <input type="range" id="slider-volume" min="0" max="2" value="1" step="0.01">
+          <span id="label-volume">???</span>
+        </section>
+
+        <section id="data-toggle">
+          <input type="radio" id="radio-freq" name="data" value="frequency" class="audio-data" checked/>
+          <label for="radio-freq">Frequency Data</label>
+      
+          <input type="radio" id="radio-wave" name="data" value="wave" class="audio-data" />
+          <label for="radio-wave">Waveform Data</label>
+        </section>
+
+        <section>
+          <span><label for="cb-highshelf">Treble Filter</label><input type="checkbox" id="cb-highshelf"></span>
+          <span><label for="cb-lowshelf">Bass Filter</label><input type="checkbox" id="cb-lowshelf"></span>
+        </section>
+
+        <section>
+        <span><input type="checkbox" id="cb-circles" checked><label for="cb-circles">Show Circles</label></span>
+        <span><input type="checkbox" id="cb-noise"><label for="cb-noise">Show Noise</label></span>
+        <span><input type="checkbox" id="cb-invert"><label for="cb-invert">Invert Colors</label></span>
+        <span><input type="checkbox" id="cb-emboss"><label for="cb-emboss">Show Emboss</label></span>
+        </section>
+      </div>
+    </main>
+</body>
+</html>
