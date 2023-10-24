@@ -1,45 +1,7 @@
 import * as audio from './audio.js';
 import * as utils from './utils.js';
 import * as canvas from './visualizer.js';
-
-class Sprite{
-  constructor(x, y, fillStyle, audioData, canvasWidth, rotation){
-    this.x = x;
-    this.y = y;
-    this.fillStyle = fillStyle;
-    this.audioData = audioData;
-    this.canvasWidth = canvasWidth;
-    this.rotation = rotation;
-  }
-  update(){
-    //update rotation for some movement
-    this.rotation += 0.01;
-  }
-  draw(ctx){
-    let barHeight;
-    let barWidth = (this.canvasWidth/2)/this.audioData.length;
-    let increment = 0;
-    for(let i = 0; i < this.audioData.length;i++){
-      barHeight = this.audioData[i] * 0.5;
-      //draw center
-      ctx.save();
-      ctx.translate(this.x,this.y);
-      ctx.rotate(i + Math.PI * 2/this.audioData.length);
-      ctx.fillStyle = "yellow";
-      ctx.fillRect(0,0,barWidth,15);
-
-      //draw bars that will be rotated with update
-      ctx.save();
-      ctx.rotate(this.rotation);
-      ctx.fillStyle = this.fillStyle;
-      ctx.fillRect(0,0,barWidth,barHeight);
-      ctx.restore();
-
-      increment+= barWidth;
-      ctx.restore();
-    }
-  }
-}
+import * as sprite from './sprite.js';
 
 let highshelf = false;
 let lowshelf = false;
@@ -181,7 +143,7 @@ const loadJSON = () => {
     
     // set up sprites on canvas
     for(let i = 0; i < json.data.length;i++){
-      sprites.push(new Sprite(json.data[i].x,json.data[i].y,json.data[i].color,canvas.audioData,canvas.canvasWidth, 0.05));
+      sprites.push(new sprite.Sprite(json.data[i].x,json.data[i].y,json.data[i].color,canvas.audioData,canvas.canvasWidth, 0.05));
     }
 
   }
