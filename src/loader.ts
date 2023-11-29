@@ -1,4 +1,4 @@
-import * as main from "./main.js";
+import * as main from "./main";
 window.onload = () =>{
 	// 1 - do preload here - load fonts, images, additional sounds, etc...
 	

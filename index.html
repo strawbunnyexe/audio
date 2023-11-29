@@ -1,50 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <title>Audio Visualizer</title>
-  <link href="./styles/default-styles.css" type="text/css" rel="stylesheet" />
-  <script src="./src/loader.js" type="module"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="./styles/default-styles.css" type="text/css" rel="stylesheet">
 </head>
-<body>
-    <main>
-      <canvas width="960" height="540"></canvas>
-      <div id="controls">
-        <section>
-          <button id="btn-play" data-playing="no"></button>
-          <button id="btn-fs">Full Screen</button>
-		
-        <label>Track: 
-          <select id="select-track">
-          </select>
-        </label>
-        </section>
-		
-        <section>
-          Volume: <input type="range" id="slider-volume" min="0" max="2" value="1" step="0.01">
-          <span id="label-volume">???</span>
-        </section>
+<body class="has-background-link-dark is-family-sans-serif">
+  <nav class="navbar is-dark">
+    <!--logo/brand-->
+    <div class="navbar-brand">
+      <a class="navbar-item" href="index.html">
+        <i class="fas fa-music"></i>
+      </a>
+      <a class="navbar-burger" id="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+  
+    <div class="navbar-menu" id="nav-links">
+      <div class="navbar-start">
+        <a class="navbar-item" href="about.html">
+          About
+        </a>
+        <a class="navbar-item has-text-weight-bold is-active" href="index.html">
+          App
+        </a>
+      </div> <!-- end navbar-start -->
+    </div>
+  </nav>
 
-        <section id="data-toggle">
-          <input type="radio" id="radio-freq" name="data" value="frequency" class="audio-data" checked/>
-          <label for="radio-freq">Frequency Data</label>
-      
-          <input type="radio" id="radio-wave" name="data" value="wave" class="audio-data" />
-          <label for="radio-wave">Waveform Data</label>
-        </section>
+  <main class="has-text-light">
+    <div class="container mt-4 mb-5">
+        <canvas width="960" height="540"></canvas>
+    </div>
 
-        <section>
-          <span><label for="cb-highshelf">Treble Filter</label><input type="checkbox" id="cb-highshelf"></span>
-          <span><label for="cb-lowshelf">Bass Filter</label><input type="checkbox" id="cb-lowshelf"></span>
-        </section>
-
-        <section>
-        <span><input type="checkbox" id="cb-circles" checked><label for="cb-circles">Show Circles</label></span>
-        <span><input type="checkbox" id="cb-noise"><label for="cb-noise">Show Noise</label></span>
-        <span><input type="checkbox" id="cb-invert"><label for="cb-invert">Invert Colors</label></span>
-        <span><input type="checkbox" id="cb-emboss"><label for="cb-emboss">Show Emboss</label></span>
-        </section>
+    <section id="controls" class="section has-background-dark has-text-centered">
+      <h1 class="title has-text-light">Controls</h1>
+      <div class="container px-4">
+        <div class="columns">
+          <div class="column">
+            <button class="button is-info mr-1 my-1" id="btn-play" data-playing="no"></button>
+            <button class="button is-warning ml-1 my-1" id="btn-fs">Full Screen</button>
+          </div>
+          <div class="column">
+            <label class="is-size-5 mr-1">Track:</label>
+            <div class="select is-info">
+              <select id="select-track">
+              </select>
+            </div>
+          </div>
+          <div class="column">
+            <label class="is-size-5">Volume:</label> <input type="range" id="slider-volume" min="0" max="2" value="1" step="0.01">
+            <span class="is-size-6 ml-1" id="label-volume">???</span>
+          </div>
+        </div>
       </div>
+      
+      <div class="container px-4 pt-5 pb-2">
+        <div class="columns">
+          <div class="column">
+            <h2 class="has-text-light is-size-4">Visual Filters</h2>
+            <div>
+              <span class="mx-2"><input type="checkbox" id="cb-circles" checked><label class="ml-1" for="cb-circles">Show Circles</label></span>
+              <span class="mx-2"><input type="checkbox" id="cb-noise"><label class="ml-1" for="cb-noise">Show Noise</label></span>
+            </div>
+            <div>
+              <span class="mx-2"><input type="checkbox" id="cb-invert"><label class="ml-1" for="cb-invert">Invert Colors</label></span>
+              <span class="mx-2"><input type="checkbox" id="cb-emboss"><label class="ml-1" for="cb-emboss">Show Emboss</label></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container px-4 pt-4">
+        <div class="columns">
+          <div id="data-toggle" class="column">
+            <h2 class="has-text-light is-size-4">Audio Data Type</h2>
+            <span class="mr-2">
+            <input type="radio" id="radio-freq" name="data" value="frequency" class="audio-data" checked>
+            <label for="radio-freq">Frequency Data</label>
+            </span>
+        
+            <span class="ml-2">
+            <input type="radio" id="radio-wave" name="data" value="wave" class="audio-data">
+            <label for="radio-wave">Waveform Data</label>
+            </span>
+          </div>
+        <div class="column">
+          <h2 class="has-text-light is-size-4">Audio Filters</h2>
+          <span class="mr-2"><input type="checkbox" id="cb-highshelf"><label class="ml-1" for="cb-highshelf">Treble Filter</label></span>
+          <span class="ml-2"><input type="checkbox" id="cb-lowshelf"><label class="ml-1" for="cb-lowshelf">Bass Filter</label></span>
+        </div>
+
+        </div>
+      </div>
+    </section>
     </main>
+
+    <script src="./dist/bundle.js"></script>
+    <script src="src/hamburger.js"></script>
 </body>
 </html>

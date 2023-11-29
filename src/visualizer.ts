@@ -1,10 +1,15 @@
-import * as utils from './utils.js';
+import * as utils from './utils';
+import { DrawParams } from './interfaces/drawParams.interface';
 
-let ctx,canvasWidth,canvasHeight,gradient,analyserNode,audioData;
+let ctx : CanvasRenderingContext2D,
+canvasWidth:number,canvasHeight:number,
+gradient:CanvasGradient,
+analyserNode:AnalyserNode,
+audioData: Uint8Array;
 
-let barWidth,barHeight;
+let barWidth:number,barHeight:number;
 
-const setupCanvas = (canvasElement,analyserNodeRef) => {
+const setupCanvas = (canvasElement:HTMLCanvasElement,analyserNodeRef:AnalyserNode) => {
 	// create drawing context
 	ctx = canvasElement.getContext("2d");
 	canvasWidth = canvasElement.width;
@@ -20,7 +25,7 @@ const setupCanvas = (canvasElement,analyserNodeRef) => {
 	barWidth = (canvasWidth/2)/audioData.length;
 };
 
-const draw = (params={}, dataType) => {
+const draw = (params:DrawParams, dataType:string) => {
 	// get currently selected data type of audio (frequency or waveform data)
 	if(dataType == "frequency") analyserNode.getByteFrequencyData(audioData);
 	if(dataType == "wave") analyserNode.getByteTimeDomainData(audioData);
